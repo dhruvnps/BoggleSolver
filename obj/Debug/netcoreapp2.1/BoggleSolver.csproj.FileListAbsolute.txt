@@ -1,0 +1,11 @@
+/Users/Dhruv/C#/BoggleSolver/bin/Debug/netcoreapp2.1/BoggleSolver.deps.json
+/Users/Dhruv/C#/BoggleSolver/bin/Debug/netcoreapp2.1/BoggleSolver.runtimeconfig.json
+/Users/Dhruv/C#/BoggleSolver/bin/Debug/netcoreapp2.1/BoggleSolver.runtimeconfig.dev.json
+/Users/Dhruv/C#/BoggleSolver/bin/Debug/netcoreapp2.1/BoggleSolver.dll
+/Users/Dhruv/C#/BoggleSolver/bin/Debug/netcoreapp2.1/BoggleSolver.pdb
+/Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.csprojAssemblyReference.cache
+/Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.csproj.CoreCompileInputs.cache
+/Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.AssemblyInfoInputs.cache
+/Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.AssemblyInfo.cs
+/Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.dll
+/Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.pdb
