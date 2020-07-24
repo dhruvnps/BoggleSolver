@@ -22,7 +22,7 @@ namespace BoggleSolver
             new Point(1,  -1),  new Point(1,  0),   new Point(1,  1),
         };
 
-        public List<Point> GetNeighbours(Point point)
+        private List<Point> GetNeighbours(Point point)
         {
             List<Point> neighbours = new List<Point>();
             foreach (Point delta in _neighboursDelta)
