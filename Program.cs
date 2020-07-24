@@ -13,24 +13,14 @@ namespace BoggleSolver
             IEnumerable<string> wordlist = new List<string>();
             wordlist = File.ReadAllLines("wordlist.txt").ToList();
             var trie = Trie.BuildTrie(wordlist);
-
             /*char[,] board = {
                 { 'A', 'N', 'T', 'Y' },
                 { 'U', 'D', 'E', 'B' },
                 { 'S', 'M', 'N', 'R' },
                 { 'O', 'S', 'I', 'T' }
             };*/
-
-            var sw = new Stopwatch();
-            sw.Start();
-            for (int i = 0; i < 100; i++)
-            {
-                // sw.Restart();
-                RunSolver(Board.RandomBoardArray(), trie);
-                // sw.Stop();
-                // Console.WriteLine(sw.Elapsed.Ticks / 10 + " μs");
-            }
-            Console.WriteLine(sw.Elapsed.Ticks / 1000 + " μs");
+            var board = Board.RandomBoardArray();
+            RunSolver(board, trie);
         }
 
         static void RunSolver(char[,] board, Trie trie)
@@ -40,7 +30,7 @@ namespace BoggleSolver
             var words = new List<string>(found.Keys);
             var paths = new List<List<int>>(found.Values);
             var scores = new List<int>(found.Keys.Select(i => (int)Math.Pow(2, i.Length - 2)));
-            /*for (int i = 0; i < words.Count; i++)
+            for (int i = 0; i < words.Count; i++)
             {
                 Console.Write(words[i] + ", ");
                 foreach (int node in paths[i])
@@ -49,8 +39,8 @@ namespace BoggleSolver
                 }
                 Console.WriteLine(", " + scores[i]);
             }
-            Board.Print2DArray(solver._board);*/
-            // Console.WriteLine(scores.Sum());
+            Board.Print2DArray(solver._board);
+            Console.WriteLine(scores.Sum());
         }
     }
 }
