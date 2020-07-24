@@ -24,7 +24,7 @@ namespace BoggleSolver
 
         private List<Point> GetNeighbours(Point point)
         {
-            List<Point> neighbours = new List<Point>();
+            var neighbours = new List<Point>();
             foreach (Point delta in _neighboursDelta)
             {
                 Point neigh = new Point(
@@ -39,41 +39,39 @@ namespace BoggleSolver
             return neighbours;
         }
 
-        private void DFS(Point point, HashSet<int> visited, HashSet<string> wordsFound, string prefix)
+        private void DFS(Point point, List<int> visited, Dictionary<string, List<int>> found, string prefix)
         {
-            if (visited.Contains(Board.PointToInt(point)))
-            {
-                return;
-            }
             visited.Add(Board.PointToInt(point));
             prefix += _board[point.row, point.col];
             if (_trie.ContainsPrefix(prefix))
             {
                 if (_trie.ContainsWord(prefix))
                 {
-                    wordsFound.Add(prefix);
+                    found[prefix] = visited.Take(visited.Count).ToList();
                 }
-
                 List<Point> neighbours = GetNeighbours(point);
                 foreach (Point neigh in neighbours)
                 {
-                    DFS(neigh, visited, wordsFound, prefix);
+                    if (!visited.Contains(Board.PointToInt(neigh)))
+                    {
+                        DFS(neigh, visited, found, prefix);
+                    }
                 }
             }
             visited.Remove(Board.PointToInt(point));
         }
 
-        public List<string> FindWords()
+        public Dictionary<string, List<int>> FindWordsWithPath()
         {
-            HashSet<string> wordsFound = new HashSet<string>();
+            var found = new Dictionary<string, List<int>>();
             for (int row = 0; row < 4; row++)
             {
                 for (int col = 0; col < 4; col++)
                 {
-                    DFS(new Point(row, col), new HashSet<int>(), wordsFound, "");
+                    DFS(new Point(row, col), new List<int>(), found, "");
                 }
             }
-            return wordsFound.ToList();
+            return new Dictionary<string, List<int>>(found.OrderBy(i => i.Key.Length));
         }
     }
 }

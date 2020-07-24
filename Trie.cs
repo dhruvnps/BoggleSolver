@@ -15,7 +15,7 @@ namespace BoggleSolver
 
         public static Trie BuildTrie(IEnumerable<string> words)
         {
-            Trie trie = new Trie();
+            var trie = new Trie();
             foreach (string word in words)
             {
                 Trie currentNode = trie;

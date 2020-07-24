@@ -17,7 +17,7 @@ namespace BoggleSolver
 
             char[] board = new char[16];
             List<int> diceNumbers = Enumerable.Range(0, 16).ToList();
-            Random random = new Random();
+            var random = new Random();
             for (int i = 0; i <= 15; i++)
             {
                 int x = random.Next(0, diceNumbers.Count());
@@ -44,7 +44,7 @@ namespace BoggleSolver
 
         public static int PointToInt(Point point)
         {
-            return ((point.row + 1) * (point.col + 1)) - 1;
+            return point.row * 4 + point.col;
         }
 
         public static void Print2DArray<T>(T[,] array)

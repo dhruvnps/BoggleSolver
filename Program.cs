@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Diagnostics;
 
 namespace BoggleSolver
 {
@@ -9,32 +10,47 @@ namespace BoggleSolver
     {
         static void Main(string[] args)
         {
-            IEnumerable<string> words = new List<string>();
-            words = File.ReadAllLines("words.txt").ToList();
+            IEnumerable<string> wordlist = new List<string>();
+            wordlist = File.ReadAllLines("wordlist.txt").ToList();
+            var trie = Trie.BuildTrie(wordlist);
 
-            // char[,] board = Board.RandomBoardArray();
-            char[,] board = {
+            /*char[,] board = {
                 { 'A', 'N', 'T', 'Y' },
                 { 'U', 'D', 'E', 'B' },
                 { 'S', 'M', 'N', 'R' },
                 { 'O', 'S', 'I', 'T' }
-            };
+            };*/
 
-            Trie trie = Trie.BuildTrie(words);
-            Solver solver = new Solver(board, trie);
-
-            int score = 0;
-            List<string> wordsFound = solver.FindWords();
-            wordsFound = wordsFound.OrderBy(i => i.Length).ToList();
-            foreach (string word in wordsFound)
+            var sw = new Stopwatch();
+            sw.Start();
+            for (int i = 0; i < 100; i++)
             {
-                int scoreBonus = (int)Math.Pow(2, word.Length - 2);
-                score += scoreBonus;
-                Console.Write(scoreBonus + " --> ");
-                Console.WriteLine(word);
+                // sw.Restart();
+                RunSolver(Board.RandomBoardArray(), trie);
+                // sw.Stop();
+                // Console.WriteLine(sw.Elapsed.Ticks / 10 + " μs");
             }
-            Board.Print2DArray(solver._board);
-            Console.WriteLine(score + "\n");
+            Console.WriteLine(sw.Elapsed.Ticks / 1000 + " μs");
+        }
+
+        static void RunSolver(char[,] board, Trie trie)
+        {
+            var solver = new Solver(board, trie);
+            var found = solver.FindWordsWithPath();
+            var words = new List<string>(found.Keys);
+            var paths = new List<List<int>>(found.Values);
+            var scores = new List<int>(found.Keys.Select(i => (int)Math.Pow(2, i.Length - 2)));
+            /*for (int i = 0; i < words.Count; i++)
+            {
+                Console.Write(words[i] + ", ");
+                foreach (int node in paths[i])
+                {
+                    Console.Write(node.ToString("X"));
+                }
+                Console.WriteLine(", " + scores[i]);
+            }
+            Board.Print2DArray(solver._board);*/
+            // Console.WriteLine(scores.Sum());
         }
     }
 }
