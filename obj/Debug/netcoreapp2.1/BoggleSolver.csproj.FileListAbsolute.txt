@@ -9,3 +9,4 @@
 /Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.AssemblyInfo.cs
 /Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.dll
 /Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.pdb
+/Users/Dhruv/C#/BoggleSolver/obj/Debug/netcoreapp2.1/BoggleSolver.genruntimeconfig.cache
