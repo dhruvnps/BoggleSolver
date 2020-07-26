@@ -71,7 +71,8 @@ namespace BoggleSolver
                     DFS(new Point(row, col), new List<int>(), found, "");
                 }
             }
-            return new Dictionary<string, List<int>>(found.OrderBy(i => i.Key.Length));
+            var orderedFound = found.OrderBy(i => i.Key.Length);
+            return orderedFound.ToDictionary(i => i.Key, i => i.Value);
         }
     }
 }
