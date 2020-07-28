@@ -21,11 +21,12 @@ namespace BoggleSolver
                 Trie currentNode = trie;
                 foreach (char letter in word)
                 {
-                    if (!currentNode._node.ContainsKey(letter))
+                    char letterUpper = Char.ToUpper(letter);
+                    if (!currentNode._node.ContainsKey(letterUpper))
                     {
-                        currentNode._node[letter] = new Trie();
+                        currentNode._node[letterUpper] = new Trie();
                     }
-                    currentNode = currentNode._node[letter];
+                    currentNode = currentNode._node[letterUpper];
                 }
                 currentNode._node['*'] = null;
             }
