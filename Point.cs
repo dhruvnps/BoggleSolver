@@ -6,13 +6,12 @@ namespace BoggleSolver
 {
     public class Point
     {
-        public readonly int row;
-        public readonly int col;
+        public readonly int row, col;
 
-        public Point(int r, int c)
+        public Point(int row, int col)
         {
-            row = r;
-            col = c;
+            this.row = row;
+            this.col = col;
         }
 
         public static void PrintPoints(List<Point> points)
