@@ -6,11 +6,11 @@ namespace BoggleSolver
 {
     public class Trie
     {
-        private readonly Dictionary<char, Trie> _node;
+        private readonly Dictionary<char, Trie> node;
 
         private Trie()
         {
-            _node = new Dictionary<char, Trie>();
+            node = new Dictionary<char, Trie>();
         }
 
         public static Trie BuildTrie(IEnumerable<string> words)
@@ -22,13 +22,13 @@ namespace BoggleSolver
                 foreach (char letter in word)
                 {
                     char letterUpper = Char.ToUpper(letter);
-                    if (!currentNode._node.ContainsKey(letterUpper))
+                    if (!currentNode.node.ContainsKey(letterUpper))
                     {
-                        currentNode._node[letterUpper] = new Trie();
+                        currentNode.node[letterUpper] = new Trie();
                     }
-                    currentNode = currentNode._node[letterUpper];
+                    currentNode = currentNode.node[letterUpper];
                 }
-                currentNode._node['*'] = null;
+                currentNode.node['*'] = null;
             }
             return trie;
         }
@@ -36,7 +36,7 @@ namespace BoggleSolver
         public bool ContainsWord(string word)
         {
             Trie finalNode = GetFinalNode(word);
-            return finalNode != null && finalNode._node.ContainsKey('*');
+            return finalNode != null && finalNode.node.ContainsKey('*');
         }
 
         public bool ContainsPrefix(string prefix)
@@ -50,7 +50,7 @@ namespace BoggleSolver
             Trie currentNode = this;
             foreach (char letter in word)
             {
-                if (!currentNode._node.TryGetValue(letter, out currentNode))
+                if (!currentNode.node.TryGetValue(letter, out currentNode))
                 {
                     return null;
                 }

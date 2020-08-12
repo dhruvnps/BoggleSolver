@@ -6,16 +6,16 @@ namespace BoggleSolver
 {
     public class Solver
     {
-        public readonly char[,] _board;
-        public readonly Trie _trie;
+        public readonly char[,] board;
+        public readonly Trie trie;
 
         public Solver(char[,] board, Trie trie)
         {
-            _board = board;
-            _trie = trie;
+            this.board = board;
+            this.trie = trie;
         }
 
-        private readonly List<Point> _neighboursDelta = new List<Point>
+        private readonly List<Point> neighboursDelta = new List<Point>
         {
             new Point(-1, -1),  new Point(-1, 0),   new Point(-1, 1),
             new Point(0,  -1),  /*   origin   */    new Point(0,  1),
@@ -25,7 +25,7 @@ namespace BoggleSolver
         private List<Point> GetNeighbours(Point point)
         {
             var neighbours = new List<Point>();
-            foreach (Point delta in _neighboursDelta)
+            foreach (Point delta in neighboursDelta)
             {
                 Point neigh = new Point(
                     delta.row + point.row,
@@ -42,10 +42,10 @@ namespace BoggleSolver
         private void DFS(Point point, List<int> visited, Dictionary<string, List<int>> found, string prefix)
         {
             visited.Add(Board.PointToInt(point));
-            prefix += _board[point.row, point.col];
-            if (_trie.ContainsPrefix(prefix))
+            prefix += board[point.row, point.col];
+            if (trie.ContainsPrefix(prefix))
             {
-                if (_trie.ContainsWord(prefix))
+                if (trie.ContainsWord(prefix))
                 {
                     found[prefix] = visited.Take(visited.Count).ToList();
                 }

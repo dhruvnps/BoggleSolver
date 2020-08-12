@@ -39,7 +39,7 @@ namespace BoggleSolver
                 }
                 Console.WriteLine(", " + scores[i]);
             }
-            Board.Print2DArray(solver._board);
+            Board.Print2DArray(solver.board);
             Console.WriteLine(scores.Sum());
         }
     }
